@@ -1,7 +1,9 @@
-#img1 {
+li {
   width: 30%;
   border: 2px black solid; 
   margin: 2px; 
   padding: 2px; 
+  height: 30%; 
+  float: left; 
 } 
 
