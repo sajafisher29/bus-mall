@@ -1,6 +1,5 @@
 'use strict';
 
-
 var left = document.getElementById('img1');
 img1.addEventListener('click', getRandomImage);
 
@@ -9,7 +8,6 @@ img2.addEventListener('click', getRandomImage);
 
 var right = document.getElementById('img3');
 img3.addEventListener('click', getRandomImage);
-
 
 var imagesArray = [
   './images/bag.jpg',
@@ -40,13 +38,18 @@ function getRandomNumber() {
     return Math.floor(Math.random()*imagesArray.length);
 }
 
-
 function getRandomImage() {
-  var imageSource = imagesArray[getRandomNumber()];
+  var randomArray = [];
+  
+  for (var i = 0; i < 3; i++) {
+  randomArray.push(imagesArray[getRandomNumber()]);
+  }
+
   console.log(getRandomNumber());
-  left.src = imageSource;
-  center.src = imageSource;
-  right.src = imageSource;
+  left.src = randomArray[0];
+  center.src = randomArray[1];
+  right.src = randomArray[2];
+
 }
 
 
