@@ -1,7 +1,8 @@
 'use strict';
 
-var image = document.getElementById('img1');
-img1.addEventListener('click', getRandomImage);
+
+var image = document.getElementsByClassName('randomImage');
+randomImage.addEventListener('click', getRandomImage);
 
 var imagesArray = [
   'images/bag.jpg',
@@ -37,3 +38,5 @@ function getRandomImage() {
 getRandomImage(img1);
 getRandomImage(img2);
 getRandomImage(img3);
+
+
