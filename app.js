@@ -10,7 +10,7 @@ function ImageAnalytics(name, filepath, displayed, clicked) {
 
 ImageAnalytics.imageDatabase = [];
 
-//CHANGE FILE PATH NOTE
+//CHANGE FILE PATH 
 var r2d2Bag = new ImageAnalytics('R2D2 Bag', 'images/bag.jpg', 0, 0);
 var bananaSlicer = new ImageAnalytics('Banana Slicer', 'images/banana.jpg', 0, 0);
 var poopScreen = new ImageAnalytics('Bathroom Screen', './images/bathroom.jpg', 0, 0);

@@ -7,3 +7,11 @@ li {
   float: left; 
 } 
 
+img {
+  height: auto;
+  width: 150px;
+  border: 5px dotted black; 
+  margin: 50px;
+  padding: 50px; 
+}
+
