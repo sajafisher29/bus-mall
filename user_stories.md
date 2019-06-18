@@ -1,7 +1,9 @@
 User Story:
 
 As a developer, I want to randomize the image output when the mouse is clicked, for a tracking survey. 
-As a developer each individual element will have accessability and description attributes that uphold to regulation standards. 
+
+As a developer each individual element will have accessability and description attributes that uphold to regulation standards.
+
 As a developer I want each image to be pathed and have an unique identifier, have easily readable files, and my code's logic holds up to standard. 
 
 As a marketer I want my website to be coherent and matching in style and color.
