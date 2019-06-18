@@ -1,36 +1,36 @@
 'use strict';
 
-function ImageAnalytics(name, filepath, displayed, clicked) {
+function ImageAnalytics(name, filepath) {
   this.name = name;
   this.filepath = filepath;
   this.displayed = 0;
   this.clicked = 0;
-  ImageAnalytics.imageDatabase.push(this); 
+  ImageAnalytics.imageDatabase.push(this);
 }
 
 ImageAnalytics.imageDatabase = [];
 
-//CHANGE FILE PATH 
-var r2d2Bag = new ImageAnalytics('R2D2 Bag', 'images/bag.jpg', 0, 0);
-var bananaSlicer = new ImageAnalytics('Banana Slicer', 'images/banana.jpg', 0, 0);
-var poopScreen = new ImageAnalytics('Bathroom Screen', './images/bathroom.jpg', 0, 0);
-var boots = new ImageAnalytics('Yellow Boots', './images/boots.jpg', 0, 0);
-var toaster = new ImageAnalytics('Breakfast Toaster', './images/breakfast.jpg', 0, 0);
-// var meatballs = new ImageAnalytics('Delicious Meatball Gum, Yum!', './images/bag', 0, 0);
-// var chair = new ImageAnalytics('Gorgeous Red Chair', './images/bag', 0, 0);
-// var cthulhu = new ImageAnalytics('Cthulhu Eats a Guy!', './images/bag', 0, 0);
-// var dogDuck = new ImageAnalytics('Duck Dog Muzzle', './images/bag', 0, 0);
-// var dragon = new ImageAnalytics('YUMMY dragon meat', './images/bag', 0, 0);
-// var pen = new ImageAnalytics('Office Cutlery', './images/bag', 0, 0);
-// var petSweep = new ImageAnalytics('Doggie Housework Helper', './images/bag', 0, 0);
-// var scissors = new ImageAnalytics('Pizza Slicer', './images/bag', 0, 0);
-// var shark = new ImageAnalytics('Sleep With the Fishes', './images/bag', 0, 0);
-// var sweep = new ImageAnalytics('Put Baby to WORK', './images/bag', 0, 0);
-// var taunTaun = new ImageAnalytics('Smells Worse Inside', './images/bag', 0, 0);
-// var unicorn = new ImageAnalytics('You\'re a Monster if You Eat This', './images/bag', 0, 0);
-// var usb = new ImageAnalytics('Slither', './images/bag', 0, 0);
-// var waterCan = new ImageAnalytics('Not Useless at ALL', './images/bag', 0, 0);
-// var wineGlass = new ImageAnalytics('Stylish', './images/bag', 0, 0);
+//CHANGE FILE PATH
+var r2d2Bag = new ImageAnalytics('R2D2 Bag', 'images/bag.jpg');
+var bananaSlicer = new ImageAnalytics('Banana Slicer', 'images/banana.jpg');
+var poopScreen = new ImageAnalytics('Bathroom Screen', './images/bathroom.jpg');
+var boots = new ImageAnalytics('Yellow Boots', './images/boots.jpg');
+var toaster = new ImageAnalytics('Breakfast Toaster', './images/breakfast.jpg');
+var meatballs = new ImageAnalytics('Delicious Meatball Gum, Yum!', './images/bubblegum.jpg');
+var chair = new ImageAnalytics('Gorgeous Red Chair', './images/chair.jpg');
+var cthulhu = new ImageAnalytics('Cthulhu Eats a Guy!', './images/cthulhu.jpg');
+var dogDuck = new ImageAnalytics('Duck Dog Muzzle', './images/dog-duck.jpg');
+var dragon = new ImageAnalytics('YUMMY dragon meat', './images/dragon.jpg');
+var pen = new ImageAnalytics('Office Cutlery', './images/pen.jpg');
+var petSweep = new ImageAnalytics('Doggie Housework Helper', './images/pet-sweep.jpg');
+var scissors = new ImageAnalytics('Pizza Slicer', './images/scissors.jpg');
+var shark = new ImageAnalytics('Sleep With the Fishes', './images/shark.jpg');
+var sweep = new ImageAnalytics('Put Baby to WORK', './images/sweep.png');
+var taunTaun = new ImageAnalytics('Smells Worse Inside', './images/tauntaun.jpg');
+var unicorn = new ImageAnalytics('You\'re a Monster if You Eat This', './images/unicorn.jpg');
+var usb = new ImageAnalytics('Slither', './images/usb.gif');
+var waterCan = new ImageAnalytics('Not Useless at ALL', './images/water-can.jpg');
+var wineGlass = new ImageAnalytics('Stylish', './images/wine-glass.jpg');
 
 console.log(ImageAnalytics.imageDatabase);
 
@@ -67,23 +67,31 @@ var imagesArray = [
 ];
 
 function getRandomNumber() {
-    return Math.floor(Math.random()*ImageAnalytics.imageDatabase.length);
+  return Math.floor(Math.random()*ImageAnalytics.imageDatabase.length);
 }
 
 function getRandomImage() {
   var randomArray = [];
-  
+
   for (var i = 0; i < 3; i++) {
-  randomArray.push(ImageAnalytics.imageDatabase[getRandomNumber()].filepath);
+    randomArray.push(ImageAnalytics.imageDatabase[getRandomNumber()].filepath);
   }
 
   console.log(getRandomNumber());
   left.src = randomArray[0];
   center.src = randomArray[1];
-  right.src = randomArray[2];  
+  right.src = randomArray[2];
 }
-
 
 getRandomImage();
 
+//Array to hold the past six randomly generated unique images
+var pastImages = [];
 
+//Generate a random photo (getRandomImage)
+//Check it against the pastImages array
+//If it is not a duplicate push it into the array
+//While pastImages.length is less than 6 push only
+//After while is no longer true push to the end of the array and cut pastImages[0]
+
+//On the 25th click remove the images, stop the click counter, and show the data
