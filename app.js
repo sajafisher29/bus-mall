@@ -39,17 +39,11 @@ new ImageAnalytics('Stylish', './images/wine-glass.jpg');
 function setupListeners() {
   var imageContainer = document.getElementById('images');
   imageContainer.addEventListener('click', handleClick);
-  imageContainer.addEventListener('click', screamAndShout);
 }
 
 function removeListeners() {
   var imageContainer = document.getElementById('images');
   imageContainer.removeEventListener('click', handleClick);
-}
-
-
-function screamAndShout() {
-  console.log("OUCH");
 }
 
 function getRandomNumber() {
@@ -121,3 +115,10 @@ function getRandomImages() {
 // createImages(); //
 setupListeners();
 getRandomImages();
+
+//////////////////////
+////Local Storage////
+////////////////////
+
+window.localStorage.setItem('name', 'clicks');
+window.localStorage.setItem('name', 'displayed');
