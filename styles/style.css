@@ -1,15 +1,32 @@
+body {
+  color: whitesmoke;
+  background: rgb(61, 61, 61);
+}
+
+h1 {
+  font-size: 100px;
+  text-align: center;
+  margin: 50px;
+}
+
 li {
-  width: 30%;
-  margin: 2px; 
-  padding: 2px; 
-  height: 30%; 
-  float: left; 
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  display: inline-block;
 } 
 
 img {
-  height: auto;
+  vertical-align: middle;
   width: 150px;
-  margin: 50px;
-  padding: 50px; 
 }
 
+#shopping {
+  text-align: center;
+}
+
+#canvasChart {
+  background: rgb(61, 61, 61); 
+  margin: auto;
+  display: block; 
+}

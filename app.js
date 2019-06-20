@@ -1,5 +1,16 @@
 'use strict';
 
+///////////////////////////////
+///Section Building Canvas///
+/////////////////////////////
+
+var canvas = document.getElementById('canvasWindow');
+var ctx = canvas.getContext('2d');
+
+///////////////////////////////
+//Section dictating pictures//
+/////////////////////////////
+
 var maxClicksAllowed = 25;
 var clicksThisSession = 0;
 var previousSetOfImages = [];
@@ -11,6 +22,7 @@ function ImageAnalytics(name, filepath) {
   this.clicked = 0;
   ImageAnalytics.imageDatabase.push(this);
 }
+
 ImageAnalytics.imageDatabase = [];
 
 //CHANGE FILE PATH
@@ -57,6 +69,7 @@ function handleClick(event) {
       clicksThisSession++;
       if (clicksThisSession === maxClicksAllowed) {
         removeListeners();
+        buildTheChart();
       }
       break;
     }
@@ -103,7 +116,6 @@ function getRandomImages() {
         // Bug out
         ok = true;
       }
-
     }
   }
 
@@ -111,8 +123,54 @@ function getRandomImages() {
 
 }
 
-/// Create Images
-// createImages(); //
+function buildTheChart() {
+  var labels = [];
+  var voteData = [];
+  var colors = [];
+  
+  for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
+    ImageAnalytics.imageDatabase[i].pct = Math.round((ImageAnalytics.imageDatabase[i].clicked / ImageAnalytics.imageDatabase[i].displayed) * 100);
+  }
+  var sortedVotes = ImageAnalytics.imageDatabase.sort(function(a, b) {
+    return b.pct - a.pct;
+  });
+  
+  for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
+    labels.push(ImageAnalytics.imageDatabase[i].name);
+    voteData.push(ImageAnalytics.imageDatabase[i].pct);
+    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    colors.push(randomColor);
+  }
+  
+  var myChart = new Chart (ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Demand based on % of clicks',
+          data: voteData,
+          backgroundColor: colors
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        ]
+      }
+    }
+  });
+}
+
+
 setupListeners();
 getRandomImages();
 
