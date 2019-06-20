@@ -127,21 +127,21 @@ function buildTheChart() {
   var labels = [];
   var voteData = [];
   var colors = [];
-  
+
   for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
     ImageAnalytics.imageDatabase[i].pct = Math.round((ImageAnalytics.imageDatabase[i].clicked / ImageAnalytics.imageDatabase[i].displayed) * 100);
   }
   var sortedVotes = ImageAnalytics.imageDatabase.sort(function(a, b) {
     return b.pct - a.pct;
   });
-  
+
   for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
     labels.push(ImageAnalytics.imageDatabase[i].name);
     voteData.push(ImageAnalytics.imageDatabase[i].pct);
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
   }
-  
+
   var myChart = new Chart (ctx, {
     type: 'bar',
     data: {
@@ -177,6 +177,41 @@ getRandomImages();
 //////////////////////
 ////Local Storage////
 ////////////////////
+
+ImageAnalytics.prototype.move = function () {
+  this.name = TODO;
+};
+
+function initializeLS() {
+
+  var ImageAnalytics = {};
+
+  //is there an image object in LS?
+  var lsImageAnalytics = localStorage.getItem('ImageAnalytics');
+  if (lsImageAnalytics) {
+    console.log('Found it in LS');
+    //lsImageAnalytics is going to be a JSON string, parse it
+    lsImageAnalytics + JSON.stringify(ImageAnalytics);
+    //return new sum to lsImageAnalytics
+  }
+  //if it is not in the LS
+  else {
+    console.log('storing the new objects');
+
+    var storableImage = JSON.stringify(ImageAnalytics.imageDatabase);
+
+    localStorage.setItem('ImageAnalytics', storableImage);
+
+  }
+  return ImageAnalytics;
+}
+
+console.log(ImageAnalytics);
+
+var ImageAnalytics = initializeLS();
+ImageAnalytics.move();
+
+console.log(ImageAnalytics);
 
 window.localStorage.setItem('name', 'clicks');
 window.localStorage.setItem('name', 'displayed');
