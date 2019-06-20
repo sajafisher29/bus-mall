@@ -179,7 +179,7 @@ getRandomImages();
 ////////////////////
 
 ImageAnalytics.prototype.move = function () {
-  this.name = TODO;
+  this.name = ________;
 };
 
 function initializeLS() {
