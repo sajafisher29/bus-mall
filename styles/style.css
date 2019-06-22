@@ -1,7 +1,4 @@
-body {
-  color: whitesmoke;
-  background: rgb(61, 61, 61);
-}
+
 
 h1 {
   font-size: 100px;
@@ -26,7 +23,6 @@ img {
 }
 
 #canvasChart {
-  background: rgb(61, 61, 61); 
   margin: auto;
   display: block; 
 }

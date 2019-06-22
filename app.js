@@ -118,29 +118,75 @@ function getRandomImages() {
       }
     }
   }
-
+  
   previousSetOfImages = currentSetOfImages;
-
+  
 }
 
 function buildTheChart() {
   var labels = [];
   var voteData = [];
   var colors = [];
-
-  for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
-    ImageAnalytics.imageDatabase[i].pct = Math.round((ImageAnalytics.imageDatabase[i].clicked / ImageAnalytics.imageDatabase[i].displayed) * 100);
-  }
-  var sortedVotes = ImageAnalytics.imageDatabase.sort(function(a, b) {
-    return b.pct - a.pct;
-  });
-
-  for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
-    labels.push(ImageAnalytics.imageDatabase[i].name);
-    voteData.push(ImageAnalytics.imageDatabase[i].pct);
+  var displayed = [];
+  var clicked = [];
+  var lsDisplayed = 0;
+  var lsClicked = 0;
+  
+  console.log(ImageAnalytics.imageDatabase);
+  
+  for (var j = 0; j < ImageAnalytics.imageDatabase.length; j++) {
+    labels.push(ImageAnalytics.imageDatabase[j].name);
+    displayed.push(ImageAnalytics.imageDatabase[j].displayed);
+    clicked.push(ImageAnalytics.imageDatabase[j].clicked);
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
+
   }
+
+  if (localStorage.lsDisplayed && localStorage.lsClicked) {
+    console.log('Found it in LS');
+
+    var grabLSDisplayed = JSON.parse(localStorage.getItem('lsDisplayed'));
+    var grabLSClicked = JSON.parse(localStorage.getItem('lsClicked'));
+
+    console.log(clicked, 'Before for loop');
+    console.log(displayed, 'Before for loop');
+
+    for (var i = 0; i < grabLSDisplayed.length; i++) {
+      clicked[i] = clicked[i] + grabLSClicked[i];
+      displayed[i] = displayed[i] + grabLSDisplayed[i];
+    }
+    
+    console.log(clicked, 'After for loop');
+    console.log(displayed, 'After for loop');
+
+    lsDisplayed = JSON.stringify(displayed);
+    lsClicked = JSON.stringify(clicked);
+
+    localStorage.setItem('lsDisplayed', lsDisplayed);
+    localStorage.setItem('lsClicked', lsClicked);
+
+    for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
+      voteData.push( Math.round((clicked[i] / displayed[i]) * 100) );
+    }
+
+  } else {
+
+    console.log('brain is empty');
+
+    lsDisplayed = JSON.stringify(displayed);
+    lsClicked = JSON.stringify(clicked);
+
+    localStorage.setItem('lsDisplayed', lsDisplayed);
+    localStorage.setItem('lsClicked', lsClicked);
+
+    for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
+      voteData.push( Math.round((clicked[i] / displayed[i]) * 100) );
+    }
+  }
+
+  
+  console.log(voteData, 'Are you out there');
 
   var myChart = new Chart (ctx, {
     type: 'bar',
@@ -174,44 +220,3 @@ function buildTheChart() {
 setupListeners();
 getRandomImages();
 
-//////////////////////
-////Local Storage////
-////////////////////
-
-ImageAnalytics.prototype.move = function () {
-  this.name = ________;
-};
-
-function initializeLS() {
-
-  var ImageAnalytics = {};
-
-  //is there an image object in LS?
-  var lsImageAnalytics = localStorage.getItem('ImageAnalytics');
-  if (lsImageAnalytics) {
-    console.log('Found it in LS');
-    //lsImageAnalytics is going to be a JSON string, parse it
-    lsImageAnalytics + JSON.stringify(ImageAnalytics);
-    //return new sum to lsImageAnalytics
-  }
-  //if it is not in the LS
-  else {
-    console.log('storing the new objects');
-
-    var storableImage = JSON.stringify(ImageAnalytics.imageDatabase);
-
-    localStorage.setItem('ImageAnalytics', storableImage);
-
-  }
-  return ImageAnalytics;
-}
-
-console.log(ImageAnalytics);
-
-var ImageAnalytics = initializeLS();
-ImageAnalytics.move();
-
-console.log(ImageAnalytics);
-
-window.localStorage.setItem('name', 'clicks');
-window.localStorage.setItem('name', 'displayed');
