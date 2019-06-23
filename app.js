@@ -53,11 +53,6 @@ function setupListeners() {
   imageContainer.addEventListener('click', handleClick);
 }
 
-function setupButton() {
-  var busButton = document.getElementById('busButton');
-  busButton.addEventListener('click', handleClick);
-}
-
 function removeListeners() {
   var imageContainer = document.getElementById('images');
   imageContainer.removeEventListener('click', handleClick);
@@ -75,8 +70,8 @@ function handleClick(event) {
       clicksThisSession++;
       if (clicksThisSession === maxClicksAllowed) {
         removeListeners();
-        document.getElementById('shopping').innerHTML = ;
-        buildTheChart()
+        document.getElementById('shopping').innerHTML = ' ';
+        buildTheChart();
       }
       break;
     }
