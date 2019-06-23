@@ -1,4 +1,15 @@
+html {
+  background-color: blanchedalmond;
+}
 
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+div {
+  margin: 20px;
+  text-align: center;
+}
 
 h1 {
   font-size: 100px;
@@ -25,4 +36,26 @@ img {
 #canvasChart {
   margin: auto;
   display: block; 
+}
+
+
+.busWrapper {
+  overflow: hidden;
+}
+
+.sliding-background {
+  background: url(/images/Webp.net-resizeimage.png) repeat-x;
+  height: 560px;
+  width: 5076px;
+  animation: slide 60s linear infinite;
+}
+
+@keyframes slide {
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+
+  100%{
+    transform: translate3d(-1692px, 0, 0);
+  }
 }
