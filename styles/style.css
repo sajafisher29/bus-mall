@@ -1,5 +1,5 @@
 html {
-  background-color: blanchedalmond;
+  background-color: rgb(241, 241, 240);
 }
 
 body {
@@ -15,6 +15,12 @@ h1 {
   font-size: 100px;
   text-align: center;
   margin: 50px;
+}
+
+p {
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
 }
 
 li {
@@ -34,8 +40,10 @@ img {
 }
 
 #canvasChart {
+  padding: 0;
   margin: auto;
   display: block; 
+  width: 600px;
 }
 
 
@@ -45,7 +53,7 @@ img {
 
 .sliding-background {
   background: url(/images/Webp.net-resizeimage.png) repeat-x;
-  height: 560px;
+  height: 150px;
   width: 5076px;
   animation: slide 60s linear infinite;
 }
