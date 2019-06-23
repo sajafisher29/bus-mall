@@ -53,6 +53,11 @@ function setupListeners() {
   imageContainer.addEventListener('click', handleClick);
 }
 
+function setupButton() {
+  var busButton = document.getElementById('busButton');
+  busButton.addEventListener('click', handleClick);
+}
+
 function removeListeners() {
   var imageContainer = document.getElementById('images');
   imageContainer.removeEventListener('click', handleClick);
@@ -63,13 +68,15 @@ function getRandomNumber() {
 }
 
 function handleClick(event) {
+
   for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
     if (ImageAnalytics.imageDatabase[i].name === event.target.alt) {
       ImageAnalytics.imageDatabase[i].clicked++;
       clicksThisSession++;
       if (clicksThisSession === maxClicksAllowed) {
         removeListeners();
-        buildTheChart();
+        document.getElementById('shopping').innerHTML = ;
+        buildTheChart()
       }
       break;
     }
@@ -131,9 +138,7 @@ function buildTheChart() {
   var clicked = [];
   var lsDisplayed = 0;
   var lsClicked = 0;
-  
-  console.log(ImageAnalytics.imageDatabase);
-  
+
   for (var j = 0; j < ImageAnalytics.imageDatabase.length; j++) {
     labels.push(ImageAnalytics.imageDatabase[j].name);
     displayed.push(ImageAnalytics.imageDatabase[j].displayed);
@@ -149,16 +154,10 @@ function buildTheChart() {
     var grabLSDisplayed = JSON.parse(localStorage.getItem('lsDisplayed'));
     var grabLSClicked = JSON.parse(localStorage.getItem('lsClicked'));
 
-    console.log(clicked, 'Before for loop');
-    console.log(displayed, 'Before for loop');
-
     for (var i = 0; i < grabLSDisplayed.length; i++) {
       clicked[i] = clicked[i] + grabLSClicked[i];
       displayed[i] = displayed[i] + grabLSDisplayed[i];
     }
-    
-    console.log(clicked, 'After for loop');
-    console.log(displayed, 'After for loop');
 
     lsDisplayed = JSON.stringify(displayed);
     lsClicked = JSON.stringify(clicked);
@@ -184,9 +183,6 @@ function buildTheChart() {
       voteData.push( Math.round((clicked[i] / displayed[i]) * 100) );
     }
   }
-
-  
-  console.log(voteData, 'Are you out there');
 
   var myChart = new Chart (ctx, {
     type: 'bar',
@@ -216,7 +212,5 @@ function buildTheChart() {
   });
 }
 
-
 setupListeners();
 getRandomImages();
-
